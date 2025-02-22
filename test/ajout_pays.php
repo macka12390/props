@@ -52,8 +52,8 @@ if(isset($_POST["AjouterPays"])){
       <?php  include_once "topbar.php"  ?>
         <div class="col-md-12 grid-margin stretch-card mt-5">
                 <div class="card mt-5">
-                  <div class="card-body">
-                    <h4 class="card-title">AJOUTER PAYS</h4>
+                  <div class="card-body mt-4">
+                    <h4 class="card-title mt-4 alert alert-sucess">AJOUTER PAYS</h4>
                    
                     <form class="forms-sample" method="POST">
                       <div class="form-group">

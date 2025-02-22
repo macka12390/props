@@ -36,10 +36,10 @@ $zones=$entityManager->getRepository(Zone::class)->findBy(['status' => 'rouge'])
 
       <div class="container-fluid page-body-wrapper">
            <?php   include_once "topbar.php"?>
-        <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">LISTE ZONE</h4>
+        <div class="col-lg-12 grid-margin stretch-card mt-4">
+                <div class="card mt-4">
+                  <div class="card-body mt-4">
+                    <h4 class="card-title alert alert-success text-center">LISTE ZONE CRITIQUE</h4>
                    
                     </p>
                     <div class="table-responsive">
@@ -53,8 +53,7 @@ $zones=$entityManager->getRepository(Zone::class)->findBy(['status' => 'rouge'])
                             <th>Nb Contamine</th>
                             <th>Nb habitant</th>
                             <th>Pays</th>
-                            <th> Modifier </th>
-                            <th>Suprimer</th>
+                           
 
                             
                           </tr>
@@ -69,8 +68,7 @@ $zones=$entityManager->getRepository(Zone::class)->findBy(['status' => 'rouge'])
                             <td><?=$z->getNb_contamines() ?>  </td>
                             <td><?=$z-> getNb_habitants() ?>  </td>
                             <td><?=$z->getPays()->getNom_pays() ?></td>
-                             <td><button type="button" class="btn btn-outline-secondary">Secondary</button></td>
-                             <td><a href="afficher_zone.php?id=<?= $z->getId() ?>" class="btn btn-outline-danger">Supprimer</a></td>
+                           
                           </tr>
                           
                           <?php } ?>

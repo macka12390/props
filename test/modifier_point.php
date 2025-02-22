@@ -1,13 +1,27 @@
 <?php
 namespace App;
 require __DIR__ . '../../bootstrap.php';
-
+$zones=$entityManager->getRepository(Zone::class)->findAll();
 if(isset($_GET["idm"])){
     extract($_GET);
     $point=$entityManager->getRepository(Point::class)->find($idm);
    
    $entityManager->flush();
-}   ?>
+}  
+
+if(isset($_POST["MPoint"])){
+    extract($_POST);
+    $zoneid = $entityManager->getRepository(Zone::class)->find($zone);
+    $point = new Point();
+    $point=$entityManager->getRepository(Point::class)->find($id);
+     
+    $point->setNom_point($nom);
+    $point->setZone($zoneid);
+  
+    $entityManager->flush();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,8 +66,9 @@ if(isset($_GET["idm"])){
                       <div class="form-group">
                         <label for="exampleInputConfirmPassword1">PAYS</label>
                         <select name="zone" class="js-example-basic-single" style="width:100%">
+                            <option value="">Selectionnez...</option>
                             <?php foreach($zones as $z) { ?>
-                                <option value="<?= $z->getId() ?>"
+                                <option value="<?= $z->getId()?>"
                                     <?php if ($z->getId() == $point->getZone()->getId()) echo 'selected'; ?>>
                                     <?= $z->getNom_zone() ?>
                                 </option>

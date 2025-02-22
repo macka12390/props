@@ -45,8 +45,8 @@ header("location:http://localhost/project/test/afficher_pays.php");
         <?php include_once "topbar.php" ?>
         <div class="col-lg-12 grid-margin stretch-card mt-5">
                 <div class="card mt-4">
-                  <div class="row">
-                    <h4 class="card-title col-10">LISTE PAYS</h4>
+                  <div class="row mt-4">
+                    <h4 class="card-title col-10 ">LISTE PAYS</h4>
                     <td>  <a href="ajout_pays.php" class="btn btn-outline-success col-2">AJOUTER</a> </td>
                      
                     </p>
@@ -69,7 +69,7 @@ header("location:http://localhost/project/test/afficher_pays.php");
                             <td> <?=$p->getId() ?> </td>
                             <td> <?=$p->getNom_pays() ?> </td>
                             <td>  <a href="afficher_pays.php?id=<?= $p->getId() ?>" class="btn btn-outline-danger">Supprimer</a> </td>
-                            
+                            <td><a href="modifier_pays.php?idm=<?= $p->getId() ?>" class="btn btn-outline-success">Modifier</a></td>
                           </tr>
                           <?php } ?>
                          

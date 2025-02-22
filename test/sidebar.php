@@ -7,7 +7,7 @@
          
           
           <li class="nav-item menu-items">
-            <a class="nav-link" href="home.php">
+            <a class="nav-link" href="index.php">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>

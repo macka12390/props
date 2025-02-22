@@ -7,6 +7,16 @@ if(isset($_GET["idm"])){
    
    $entityManager->flush();
 }
+if(isset($_POST["mPays"])){
+    extract($_POST);
+    
+    $pays= new Pays();
+    $pays->setNom_pays($nomPays);
+ 
+   
+    $entityManager->flush();
+    header("location:http://localhost/project/test/afficher_pays.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -35,14 +45,14 @@ if(isset($_GET["idm"])){
   <div class="container-scroller">
   
        <?php include_once "sidebar.php" ?>
-      <div class="container-fluid page-body-wrapper">
+      <div class="container-fluid page-body-wrapper ">
       <?php  include_once "topbar.php"  ?>
-        <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
+        <div class="col-md-12 grid-margin stretch-card  mt-4">
+                <div class="card mt-4">
                   <div class="card-body">
-                    <h4 class="card-title">AJOUTER PAYS</h4>
+                    <h4 class="card-title">MODIFIER PAYS</h4>
                    
-                    <form class="forms-sample" method="delete">
+                    <form class="forms-sample" method="POST">
                         <input type="text" name="ids" value="<?=$pays->getId() ?>" hidden>
                       <div class="form-group">
                         <label for="exampleInputUsername1">NOM PAYS</label>
@@ -50,7 +60,7 @@ if(isset($_GET["idm"])){
                       </div>
                      
                      
-                      <button type="submit" name="AjouterPays" class="btn btn-primary mr-2"></button>
+                      <button type="submit" name="mPays" class="btn btn-primary mr-2">MODIFIER</button>
                       <button class="btn btn-dark">ANNULER</button>
                     </form>
                   </div>

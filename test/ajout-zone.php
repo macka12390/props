@@ -14,23 +14,31 @@ if(isset($_POST["AjouterZone"])){
     $zone->setNb_contamines($nbContamine);
     $zone->setNb_habitants($nbHabitant);
     $zone->setNb_positif($nbPositif);
-    $per=$zone->getNb_positif()/$zone->getNb_habitants();
-    if($per<0.5){
-        $zone->setStatus("vert");
-    }else if($per>15){
-        $zone->setStatus("rouge");
-    }else if($per<=15 && $per>=5){
-        $zone->setStatus("roge");
-    }
-    $zone->setPays($paysid);
+    $per=intval($zone->getNb_positif())/intval($zone->getNb_habitants());
+   // project-883361959991
+    if ($per < 0.05) {
+      $status = "vert";
+  } elseif ($per > 0.15) {
+      $status = "rouge";
+  } elseif ($per >= 0.05 && $per <= 0.15) {
+      $status = "orange";
+  } else {
+      die("NOMBRE D'HABITANT OU NOMBRE POSITIF EST MAL SAISI");
+  }
+  
+  $zone->setStatus($status);
+  $zone->setPays($paysid);
+  
+  $entityManager->persist($zone);
+  $entityManager->flush();
+  
+  header("Location: http://localhost/project/test/afficher_zone.php");
+  exit();
   
     
     
     
-    $entityManager->persist($zone);
     
-    $entityManager->flush();
-    header("location:http://localhost/project/test/afficher_zone.php");
 }
 
 ?>
@@ -63,7 +71,8 @@ if(isset($_POST["AjouterZone"])){
 
       <div class="container-fluid page-body-wrapper">
         <?php include_once "topbar.php" ?>
-        <div class="col-md-12 grid-margin stretch-card mt-4">
+        <div class="col-md-12 grid-margin stretch-card mt-5">
+              <div class="alert alert-sucess mt-4"><? isset($error) ? $error : ""?></div>
                 <div class="card">
                   <div class="card-body mt-4">
                     <h4 class="card-title">AJOUTER ZONE</h4>
